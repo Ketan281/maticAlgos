@@ -150,7 +150,7 @@ const ApexChart = () => {
           series={series}
           type="area"
           height={!isMobile ? 450 : 350}
-          width={!isMobile ? 800 : 400}
+          width={!isMobile ? 800 : 380}
           className="my-custom-chart"
         />
       </div>
