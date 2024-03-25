@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import newData from "./ddperiod.json"
+import newData from "../ddperiod.json"
 function createData(Period, MaxDD, Days) {
   return { Period, MaxDD, Days};
 }

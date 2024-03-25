@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import ReactApexChart from 'react-apexcharts';
-import Data from "./returns.json"
-import newData from "./ddperiod.json"
+import Data from "../returns.json"
+import newData from "../ddperiod.json"
 import { useMediaQuery } from '@mui/material'
 const ApexChart = () => {
   const isMobile = useMediaQuery("(max-width:768px)");
@@ -90,12 +90,12 @@ const ApexChart = () => {
    },
     series: [
       {
-        name: 'Network',
+        name: 'DropDown',
         type: 'area',
         data: areaData
       },
       {
-        name: 'Line Chart',
+        name: 'CumSum',
         type: 'line',
         data: Data.data.combined.map((item, index) => ({ x: new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }), y: item.cumsum })),
         stroke: {

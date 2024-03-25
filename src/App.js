@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import ApexChart from './MixedCharts'
-import BasicTable from './table';
+import ApexChart from './components/MixedCharts'
+import BasicTable from './components/table';
 import { useMediaQuery } from '@mui/material'
 function App() {
   const isMobile = useMediaQuery("(max-width:768px)");
