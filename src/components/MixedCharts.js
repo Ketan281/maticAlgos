@@ -144,7 +144,7 @@ function processData(combined, data) {
         format: 'dd MMM yyyy',
       },
       y: {
-        show: true,
+        show: false,
       },
    },
     legend: {
