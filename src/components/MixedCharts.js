@@ -102,7 +102,7 @@ function processData(combined, data) {
   console.log(areaData1,"areadataaa")
   const [series, setSeries] = useState([
     {
-      name: 'Network',
+      name: 'DrawDown',
       type: 'area',
       data: areaData1,
       // tooltip: { enabled: false },

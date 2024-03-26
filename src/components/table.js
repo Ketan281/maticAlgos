@@ -34,7 +34,7 @@ export default function BasicTable() {
               <TableCell component="th" scope="row" sx={{fontSize:13}}>
                 {row.Period}
               </TableCell>
-              <TableCell align="right">{row.MaxDD.toFixed(2)}</TableCell>
+              <TableCell align="right" sx={{color:"red"}}>{row.MaxDD.toFixed(2)}</TableCell>
               <TableCell align="right">{row.Days}</TableCell>
             </TableRow>
           ))}
