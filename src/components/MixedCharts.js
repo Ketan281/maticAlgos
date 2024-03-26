@@ -140,7 +140,7 @@ function processData(combined, data) {
       shared: true, 
       intersect: false,
       x: {
-        show: true,
+        show: false,
         format: 'dd MMM yyyy',
       },
       y: {
