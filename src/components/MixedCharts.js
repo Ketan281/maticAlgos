@@ -134,6 +134,13 @@ function processData(combined, data) {
     },
     markers: { size: 0, hover: { size: 0 } },
     title: { text: 'DrawDown Periods', align: 'left' },
+    sparkline: {
+      enabled: true,
+      offsetX: -10,
+      offsetY: -10,
+      imageSize: 80,
+      image: logo
+    },
     tooltip: {
       enabled: true,
       enabledOnSeries:[0], 

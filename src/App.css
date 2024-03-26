@@ -24,8 +24,8 @@
 .logo{
   z-index: 999;
   position:absolute;
-  left:36vw;
-  top:70vh;
+  left:55vw;
+  top:75vh;
   font-size: 35px;
   color:rgb(174, 172, 172);
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -33,7 +33,7 @@
 
 }
 .logo img{
-  height: 2.5rem;
+  height: 2rem;
   width: 8rem;
 }
 @media only screen and (max-width: 768px){
