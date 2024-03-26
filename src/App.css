@@ -30,6 +30,11 @@
   color:rgb(174, 172, 172);
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: 500;
+
+}
+.logo img{
+  height: 2.5rem;
+  width: 8rem;
 }
 @media only screen and (max-width: 768px){
   .logo{

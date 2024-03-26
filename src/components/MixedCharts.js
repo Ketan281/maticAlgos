@@ -1,7 +1,8 @@
 import React, { useState} from 'react';
 import ReactApexChart from 'react-apexcharts';
 import Data from "../returns.json"
-import newData from "../ddperiod.json"
+import newData from "../ddperiod.json";
+import logo from "./assets/Captureq1.png"
 import { useMediaQuery } from '@mui/material'
 const ApexChart = () => {
   const isMobile = useMediaQuery("(max-width:768px)");
@@ -39,18 +40,78 @@ const ApexChart = () => {
     return result;
 }
 
+function processData(combined, data) {
+  let result = [];
+  let addedDates = new Set(); // Set to keep track of added dates
+ 
+  // Create a set of all dates in combined
+  let allDates = new Set(combined.map(item => item.date));
+ 
+  // First, add dates from data
+  data.forEach((item) => {
+       const startDate = item.Start_Date;
+       const endDate = item.End_Date;
+ 
+       const startIndex = combined.findIndex(item => item.date === startDate);
+       const endIndex = combined.findIndex(item => item.date === endDate);
+ 
+       const rangeData = [];
+       for (let i = startIndex; i <= endIndex; i++) {
+           const date = new Date(combined[i].date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+           if (!addedDates.has(date)) { // Check if the date has already been added
+               rangeData.push({ x: date, y: combined[i].cumsum });
+               addedDates.add(date); // Add the date to the set of added dates
+           }
+       }
+ 
+       result = result.concat(rangeData);
+  });
+ 
+  // Then, add dates from combined that are not in data
+  allDates.forEach(date => {
+       if (!addedDates.has(date)) {
+           const formattedDate = new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+           result.push({ x: formattedDate, y: null });
+       }
+  });
+ 
+  // Remove duplicates based on the 'x' property
+  result = result.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+          t.x === value.x
+      ))
+  );
+ 
+  // Sort the result by date
+  result.sort((a, b) => new Date(a.x) - new Date(b.x));
+  return result;
+ }
+ 
+ 
+ 
 
+
+
+
+
+
+ 
+ 
   const areaData = getCumsumValues(Data.data.combined, newData.data);
+  const areaData1 = processData(Data.data.combined,newData.data)
+  console.log(areaData1,"areadataaa")
   const [series, setSeries] = useState([
     {
       name: 'Network',
       type: 'area',
-      data: areaData,
+      data: areaData1,
+      // tooltip: { enabled: false },
     },
     {
       name: 'Line Chart',
       type: 'line',
       data: Data.data.combined.map((item, index) => ({ x: new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }), y: item.cumsum })),
+      // tooltip: { enabled: true },
     },
   ]);
 
@@ -74,7 +135,8 @@ const ApexChart = () => {
     markers: { size: 0, hover: { size: 0 } },
     title: { text: 'DrawDown Periods', align: 'left' },
     tooltip: {
-      enabled: true, 
+      enabled: true,
+      enabledOnSeries:[0], 
       shared: true, 
       intersect: false,
       x: {
@@ -155,7 +217,7 @@ const ApexChart = () => {
         />
       </div>
       <div className='logo'>
-          MaticAlgos
+          <img src={logo} alt="logo"/>
       </div>
     </div>
   );
