@@ -5,6 +5,9 @@ import newData from "../ddperiod.json";
 import logo from "./assets/Captureq1.png"
 import { useMediaQuery } from '@mui/material'
 const ApexChart = () => {
+
+
+
   const isMobile = useMediaQuery("(max-width:768px)");
   function getCumsumValues(combined, data) {
     const cumsumMap = {};
@@ -122,8 +125,28 @@ function processData(combined, data) {
        animations: { enabled: false },
        zoom: { enabled: false },
        toolbar: { show: false },
+       events: {
+        // Event handler for rendering the logo
+        rendered: (chart) => {
+          const logoWidth = 40; // Adjust the logo width
+          const logoHeight = 40; // Adjust the logo height
+          const logoX = chart.width / 2 - logoWidth / 2; // X-axis position of the logo
+          const logoY = chart.height / 2 - logoHeight / 2; // Y-axis position of the logo
+  
+          const logoElement = document.createElement('img');
+          logoElement.src = logo;
+          logoElement.width = logoWidth;
+          logoElement.height = logoHeight;
+          logoElement.style.position = 'absolute';
+          logoElement.style.left = `${logoX}px`;
+          logoElement.style.top = `${logoY}px`;
+  
+          chart.renderer.boxContainer.appendChild(logoElement);
+        },
+      },
       //  background: '#fff',
     },
+
     dataLabels: { enabled: false },
     stroke: { curve: 'straight' },
     fill: {
@@ -212,21 +235,22 @@ function processData(combined, data) {
    
 
   return (
-    <div>
-      <div id="chart" className="my-chart">
-        <ReactApexChart
-          options={options}
-          series={series}
-          type="area"
-          height={!isMobile ? 450 : 350}
-          width={!isMobile ? 800 : 380}
-          className="my-custom-chart"
-        />
-      </div>
-      <div className='logo'>
-          <img src={logo} alt="logo"/>
-      </div>
+    <div style={{ position: 'relative' }}>
+    <div className='logo' style={{ position: 'absolute', zIndex: -1 }}>
+      <img src={logo} alt="logo" />
     </div>
+    <div id="chart" className="my-chart" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="area"
+        height={!isMobile ? 450 : 350}
+        width={!isMobile ? 800 : 380}
+        className="my-custom-chart"
+      />
+    </div>
+  </div>
+  
   );
 };
 
