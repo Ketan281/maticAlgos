@@ -38,12 +38,12 @@
 }
 @media only screen and (max-width: 768px){
   .logo img{
-    height: 1rem;
-    width: 4rem;
+    height: 2rem;
+    width: 6rem;
   }
   .logo{
     font-size: 18px;
-    left:75vw;
-    top:39vh;
+    left:82vw;
+    top:30vh;
   }
 }
