@@ -128,27 +128,9 @@ const ApexChart = () => {
       type: "area",
       height: 350,
       animations: { enabled: false },
-      zoom: { enabled: false },
-      toolbar: { show: false },
-      events: {
-        // Event handler for rendering the logo
-        rendered: (chart) => {
-          const logoWidth = 40; // Adjust the logo width
-          const logoHeight = 40; // Adjust the logo height
-          const logoX = chart.width / 2 - logoWidth / 2; // X-axis position of the logo
-          const logoY = chart.height / 2 - logoHeight / 2; // Y-axis position of the logo
+      zoom: { enabled: true },
+      toolbar: { show: true },
 
-          const logoElement = document.createElement("img");
-          logoElement.src = logo;
-          logoElement.width = logoWidth;
-          logoElement.height = logoHeight;
-          logoElement.style.position = "absolute";
-          logoElement.style.left = `${logoX}px`;
-          logoElement.style.top = `${logoY}px`;
-
-          chart.renderer.boxContainer.appendChild(logoElement);
-        },
-      },
       //  background: '#fff',
     },
 
@@ -171,7 +153,7 @@ const ApexChart = () => {
     },
     tooltip: {
       enabled: true,
-      enabledOnSeries: [0],
+      enabledOnSeries: [0,1],
       shared: true,
       intersect: false,
       x: {
